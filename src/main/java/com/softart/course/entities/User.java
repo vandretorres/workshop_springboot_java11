@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "tb_user")
@@ -28,7 +30,7 @@ public class User implements Serializable {
 	private String phone;
 	private String password;
 	
-	
+	@JsonIgnore // ignora busca de pedidos no json do cliente evitando looping infinito no relacionamento das duas tabelas	
 	@OneToMany(mappedBy = "client") // informa qual o atribudo que esta mapeando o relacionamento entre as tabelas 
 	private List<Order> orders = new ArrayList<>();
 

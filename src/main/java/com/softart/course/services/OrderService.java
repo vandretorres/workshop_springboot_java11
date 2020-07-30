@@ -6,21 +6,22 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.softart.course.entities.Order;
 import com.softart.course.entities.User;
-import com.softart.course.repositories.UserRepository;
+import com.softart.course.repositories.OrderRepository;
 
 
 //Annotation @Component faz o registro da classe no Framework para 
 //permitir que outras classes façam inejção de depencencia automatica atarvés do @autowired
 // Pode ser utilizado @Repository e @Service podem ser utilizado para registrar repositorios ou Serviços
 @Component 
-public class UserService {
+public class OrderService {
 	
 	
 	@Autowired // injeção de dpendencia automática
-	private UserRepository repository;
+	private OrderRepository repository;
 	
-	public List<User>findAll(){
+	public List<Order>findAll(){
 		
 		return repository.findAll();
 		
@@ -28,8 +29,8 @@ public class UserService {
 	
 	
 	
-	public User findById(Long id) {
-		Optional<User> obj = repository.findById(id);
+	public Order  findById(Long id) {
+		Optional<Order> obj = repository.findById(id);
 		
 		return obj.get();
 	}
