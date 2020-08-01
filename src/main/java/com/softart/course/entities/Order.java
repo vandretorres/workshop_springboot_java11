@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.softart.course.entities.enums.OrderStatus;
 
 @Entity
 @Table(name = "tb_order")
@@ -20,32 +21,37 @@ public class Order  implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Long id;
-	
-	
+
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mmss'Z'", timezone ="GMT")
 	private Instant moment;
-	
+
 	@ManyToOne // mapeia relacionamento entre a classe Order e a Classe Client. Isso fará com que o  JPA crie o relacionamento na base de dados
 	@JoinColumn(name = "client_id") // defini qual a coluna na tabela Order será utilizada como FK da tabela User
 	private User client;
-	
+
+
+	private Integer orderStatus;
+
+
 	public Order() {
-		
+
 	}
 
-	public Order(Long id, Instant moment, User client) {
-	
+	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+
 		this.id = id;
 		this.moment = moment;
+		setOrderStatus(orderStatus);
 		this.client = client;
 	}
-	
-	
-	
+
+
+
 
 	public Long getId() {
 		return id;
@@ -69,6 +75,22 @@ public class Order  implements Serializable{
 
 	public void setClient(User client) {
 		this.client = client;
+	}
+
+
+
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		if ( orderStatus != null) {
+			this.orderStatus = orderStatus.getCode();
+		}
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -112,10 +134,10 @@ public class Order  implements Serializable{
 	public String toString() {
 		return "Order [id=" + id + ", moment=" + moment + ", client=" + client + "]";
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }
