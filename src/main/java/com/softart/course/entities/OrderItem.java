@@ -58,7 +58,7 @@ public class OrderItem implements Serializable {
 	 * méotodos formam criados manualmente para setar de forma separada a chave composta referente order e product
 	 */
 	// Para evita chamada em duas vias 
-	// orderm item não irá chamar ordem que por sua vez está chamada os itens
+	// orderm item não irá chamar ordem que por sua vez está chamanda os itens	
 	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
@@ -67,6 +67,7 @@ public class OrderItem implements Serializable {
 	public void setOrder(Order order) {
 		id.setOrder(order);
 	}
+	
 	
 	public Product getProduct() {
 		return id.getProduct();

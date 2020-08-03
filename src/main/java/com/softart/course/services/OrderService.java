@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.softart.course.entities.Order;
-import com.softart.course.entities.User;
 import com.softart.course.repositories.OrderRepository;
 
 

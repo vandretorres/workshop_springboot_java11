@@ -99,9 +99,6 @@ public class Order  implements Serializable{
 		}
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	public Set<OrderItem> getItems(){
 		return items;
